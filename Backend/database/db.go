@@ -12,8 +12,7 @@ import (
 var DB *gorm.DB
 
 func InitDB() {
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
- // ✅ Read from correct env variable
+	dsn := os.Getenv("DATABASE_URL") // ✅ Read from correct env variable
 	if dsn == "" {
 		log.Fatal("DATABASE_URL not set")
 	}
